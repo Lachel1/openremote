@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenRemote — July 17, 2026</title>
+  <meta name="description" content="Curated remote roles verified open to applicants worldwide — no country restrictions.">
+  <style>
+    :root {
+      --bg:        #F7F8FA;
+      --surface:   #FFFFFF;
+      --border:    #E2E8F0;
+      --text:      #0F172A;
+      --secondary: #64748B;
+      --accent:    #1A56DB;
+      --accent-h:  #1344B4;
+      --entry-bg:  #F0FDF4;
+      --entry-border: #BBF7D0;
+      --entry-head: #15803D;
+
+      --tag-eng-bg:     #DBEAFE; --tag-eng-fg:     #1E40AF;
+      --tag-product-bg: #EDE9FE; --tag-product-fg: #6D28D9;
+      --tag-design-bg:  #FCE7F3; --tag-design-fg:  #BE185D;
+      --tag-support-bg: #D1FAE5; --tag-support-fg: #065F46;
+      --tag-devrel-bg:  #FEF3C7; --tag-devrel-fg:  #92400E;
+      --tag-other-bg:   #F1F5F9; --tag-other-fg:   #475569;
+      --rank-color:     #CBD5E1;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:        #0C1220;
+        --surface:   #131C30;
+        --border:    #1E2B45;
+        --text:      #E8EDF5;
+        --secondary: #8899BB;
+        --accent:    #4BA3D4;
+        --accent-h:  #6BB8E0;
+        --entry-bg:  #0F2E1E;
+        --entry-border: #166534;
+        --entry-head: #4ADE80;
+
+        --tag-eng-bg:     #1E3A5F; --tag-eng-fg:     #60A5FA;
+        --tag-product-bg: #2D1F50; --tag-product-fg: #A78BFA;
+        --tag-design-bg:  #3B1530; --tag-design-fg:  #F472B6;
+        --tag-support-bg: #0F2E1E; --tag-support-fg: #34D399;
+        --tag-devrel-bg:  #2D1F08; --tag-devrel-fg:  #FBBF24;
+        --tag-other-bg:   #1A2540; --tag-other-fg:   #94A3B8;
+        --rank-color:     #2A3A55;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg:#0C1220; --surface:#131C30; --border:#1E2B45;
+      --text:#E8EDF5; --secondary:#8899BB; --accent:#4BA3D4; --accent-h:#6BB8E0;
+      --entry-bg:#0F2E1E; --entry-border:#166534; --entry-head:#4ADE80;
+      --tag-eng-bg:#1E3A5F; --tag-eng-fg:#60A5FA;
+      --tag-product-bg:#2D1F50; --tag-product-fg:#A78BFA;
+      --tag-design-bg:#3B1530; --tag-design-fg:#F472B6;
+      --tag-support-bg:#0F2E1E; --tag-support-fg:#34D399;
+      --tag-devrel-bg:#2D1F08; --tag-devrel-fg:#FBBF24;
+      --tag-other-bg:#1A2540; --tag-other-fg:#94A3B8;
+      --rank-color:#2A3A55;
+    }
+    :root[data-theme="light"] {
+      --bg:#F7F8FA; --surface:#FFFFFF; --border:#E2E8F0;
+      --text:#0F172A; --secondary:#64748B; --accent:#1A56DB; --accent-h:#1344B4;
+      --entry-bg:#F0FDF4; --entry-border:#BBF7D0; --entry-head:#15803D;
+      --tag-eng-bg:#DBEAFE; --tag-eng-fg:#1E40AF;
+      --tag-product-bg:#EDE9FE; --tag-product-fg:#6D28D9;
+      --tag-design-bg:#FCE7F3; --tag-design-fg:#BE185D;
+      --tag-support-bg:#D1FAE5; --tag-support-fg:#065F46;
+      --tag-devrel-bg:#FEF3C7; --tag-devrel-fg:#92400E;
+      --tag-other-bg:#F1F5F9; --tag-other-fg:#475569;
+      --rank-color:#CBD5E1;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-h); }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+    .container { max-width: 780px; margin: 0 auto; padding: 0 1.25rem; }
+
+    /* Masthead */
+    .masthead { padding: 3rem 0 1.75rem; border-bottom: 1px solid var(--border); }
+    .brand {
+      font-family: 'Iowan Old Style', 'Palatino Linotype', Georgia, 'Times New Roman', serif;
+      font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.45rem;
+    }
+    .brand-accent { color: var(--accent); }
+    .tagline {
+      font-size: 0.9375rem; color: var(--secondary);
+      max-width: 54ch; margin-bottom: 1.25rem; text-wrap: balance;
+    }
+    .meta-row {
+      display: flex; align-items: center; flex-wrap: wrap;
+      gap: 0.75rem; font-size: 0.8rem; color: var(--secondary);
+    }
+    .pill {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 999px; padding: 0.2rem 0.65rem;
+      font-size: 0.75rem; font-weight: 500;
+    }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: #22C55E; flex-shrink: 0; }
+
+    /* Section headings */
+    .section { margin-top: 2rem; }
+    .section-head {
+      display: flex; align-items: baseline; gap: 0.6rem;
+      margin-bottom: 0.25rem; padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-title {
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--secondary);
+    }
+    .section-count {
+      font-size: 0.72rem; color: var(--secondary);
+    }
+
+    /* Entry-level section */
+    .entry-section {
+      background: var(--entry-bg);
+      border: 1px solid var(--entry-border);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin-top: 2rem;
+    }
+    .entry-section .section-head {
+      border-bottom-color: var(--entry-border);
+    }
+    .entry-section .section-title { color: var(--entry-head); }
+    .entry-section .section-count { color: var(--entry-head); opacity: 0.7; }
+    .entry-desc {
+      font-size: 0.8rem; color: var(--entry-head); opacity: 0.8;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Job rows */
+    .job-list { list-style: none; }
+    .job {
+      display: grid;
+      grid-template-columns: 3rem 1fr auto;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0.5rem;
+      border-bottom: 1px solid var(--border);
+      border-radius: 6px;
+      transition: background 0.12s ease, padding 0.12s ease;
+    }
+    .entry-section .job { border-bottom-color: var(--entry-border); }
+    .entry-section .job:last-child { border-bottom: none; }
+    .job:hover {
+      background: var(--surface);
+      padding-left: 1rem; padding-right: 1rem; margin: 0 -0.5rem;
+    }
+    .entry-section .job:hover { background: var(--surface); }
+    .rank {
+      font-size: 2rem; font-weight: 800; color: var(--rank-color);
+      font-variant-numeric: tabular-nums; line-height: 1;
+      text-align: right; user-select: none; transition: color 0.12s;
+    }
+    .rank-dot { font-size: 1.5rem; color: var(--entry-border); }
+    .job:hover .rank { color: var(--border); }
+    .job-info { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+    .job-header { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+    .company {
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--secondary);
+    }
+    .title { font-size: 0.9375rem; font-weight: 500; color: var(--text); line-height: 1.35; }
+    .tag {
+      font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.04em;
+      text-transform: uppercase; padding: 0.15rem 0.45rem;
+      border-radius: 4px; white-space: nowrap; flex-shrink: 0;
+    }
+    .tag-eng     { background: var(--tag-eng-bg);     color: var(--tag-eng-fg); }
+    .tag-product { background: var(--tag-product-bg); color: var(--tag-product-fg); }
+    .tag-design  { background: var(--tag-design-bg);  color: var(--tag-design-fg); }
+    .tag-support { background: var(--tag-support-bg); color: var(--tag-support-fg); }
+    .tag-devrel  { background: var(--tag-devrel-bg);  color: var(--tag-devrel-fg); }
+    .tag-other   { background: var(--tag-other-bg);   color: var(--tag-other-fg); }
+    .apply-btn {
+      font-size: 0.8125rem; font-weight: 600; color: var(--accent);
+      padding: 0.35rem 0.7rem; border: 1.5px solid var(--accent);
+      border-radius: 6px; white-space: nowrap; flex-shrink: 0;
+      transition: background 0.12s, color 0.12s;
+    }
+    .apply-btn:hover { background: var(--accent); color: #fff; }
+
+    .site-footer {
+      padding: 2rem 0 3rem; border-top: 1px solid var(--border);
+      margin-top: 2.5rem; font-size: 0.8125rem; color: var(--secondary); line-height: 1.7;
+    }
+    .site-footer a { color: var(--secondary); text-decoration: underline; }
+    .site-footer a:hover { color: var(--text); }
+
+    @media (max-width: 520px) {
+      .job { grid-template-columns: 2rem 1fr; }
+      .job-action { grid-column: 2; margin-top: 0.25rem; }
+      .rank { font-size: 1.4rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="masthead">
+      <div class="brand">Open<span class="brand-accent">Remote</span></div>
+      <p class="tagline">Verified remote roles open to applicants worldwide — no country restrictions hidden in the description.</p>
+      <div class="meta-row">
+        <span class="pill"><span class="dot"></span>33 verified roles</span>
+        <span>Week of July 17, 2026</span>
+      </div>
+    </header>
+
+    <main>
+      <!-- Entry-level section -->
+      <section class="entry-section" aria-label="Entry-level picks">
+        <div class="section-head">
+          <span class="section-title">Entry-Level Picks</span>
+          <span class="section-count">8 roles</span>
+        </div>
+        <p class="entry-desc">Support, associate, and junior roles — good starting points for early-career candidates.</p>
+        <ol class="job-list" aria-label="Entry-level job listings">
+        <li class="job">
+          <span class="rank rank-dot" aria-hidden="true">·</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Automattic</span>
+              <span class="tag tag-eng">Happiness Engineering</span>
+            </div>
+            <div class="title">Happiness Engineer – Customer Support &amp; Success</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/automatticcareers/jobs/6216089" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank rank-dot" aria-hidden="true">·</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Automattic</span>
+              <span class="tag tag-eng">Happiness Engineering</span>
+            </div>
+            <div class="title">Technical Support Team Lead, Pressable</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/automatticcareers/jobs/7943152" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank rank-dot" aria-hidden="true">·</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Clipboard Health</span>
+              <span class="tag tag-support">Customer Operations</span>
+            </div>
+            <div class="title">Technical Support Engineer</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/clipboard/d77b2224-307f-48b1-a0ea-ab67153993c0" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank rank-dot" aria-hidden="true">·</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Clipboard Health</span>
+              <span class="tag tag-support">Customer Operations</span>
+            </div>
+            <div class="title">Customer Experience Specialist</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/clipboard/48cd8693-92b0-4d11-9eaf-10402426fe3e" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank rank-dot" aria-hidden="true">·</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Clipboard Health</span>
+              <span class="tag tag-support">Customer Operations</span>
+            </div>
+            <div class="title">Client Support Specialist (Workplaces - B2B)</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/clipboard/26f63db2-b223-47e5-86ef-14563144a4c2" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank rank-dot" aria-hidden="true">·</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Clipboard Health</span>
+              <span class="tag tag-support">Customer Operations</span>
+            </div>
+            <div class="title">Tooling Program Manager</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/clipboard/3140ff24-cfdc-4f22-a81f-ccac98ef9120" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank rank-dot" aria-hidden="true">·</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Clipboard Health</span>
+              <span class="tag tag-support">Customer Operations</span>
+            </div>
+            <div class="title">Strategy &amp; Ops Associate, Applied AI</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/clipboard/48b39937-d8fa-467b-beb0-4fdebfe7bd9f" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank rank-dot" aria-hidden="true">·</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Clipboard Health</span>
+              <span class="tag tag-support">Customer Operations</span>
+            </div>
+            <div class="title">Customer Support Team Lead</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/clipboard/336f74f7-f7a4-465a-9876-4dfe229ce454" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        </ol>
+      </section>
+
+      <!-- Main ranked section -->
+      <section class="section" aria-label="All verified roles">
+        <div class="section-head">
+          <span class="section-title">All Verified Roles</span>
+          <span class="section-count">25 roles · ranked by relevance</span>
+        </div>
+        <ol class="job-list" aria-label="All remote job listings">
+        <li class="job">
+          <span class="rank" aria-hidden="true">1</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Remote</span>
+              <span class="tag tag-product">Product</span>
+            </div>
+            <div class="title">Senior Product Manager, Reporting &amp; Insights</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/remotecom/jobs/7792448003" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank" aria-hidden="true">2</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Brave</span>
+              <span class="tag tag-eng">Engineering</span>
+            </div>
+            <div class="title">Staff Security and Privacy Engineer</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/brave/jobs/8026920" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank" aria-hidden="true">3</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Supabase</span>
+              <span class="tag tag-eng">Security</span>
+            </div>
+            <div class="title">Product Security Engineer</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/8d05bc85-53f3-4ebf-b5b4-c88cdb922673" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank" aria-hidden="true">4</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Supabase</span>
+              <span class="tag tag-eng">Security</span>
+            </div>
+            <div class="title">Security Operations Engineer</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/0bcf21fd-e24e-4a0b-b393-ca4eb25896ce" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank" aria-hidden="true">5</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Brave</span>
+              <span class="tag tag-eng">Security</span>
+            </div>
+            <div class="title">Sr. Security Engineer</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/brave/jobs/8048968" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank" aria-hidden="true">6</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Supabase</span>
+              <span class="tag tag-eng">Engineering</span>
+            </div>
+            <div class="title">Software Engineer - Auth</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/e569b7f7-fa8f-4139-86f6-4f52b456882d" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank" aria-hidden="true">7</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Mozilla</span>
+              <span class="tag tag-eng">Firefox</span>
+            </div>
+            <div class="title">Senior Software Engineer - Engineering Workflow and CI</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/mozilla/jobs/7782973" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank" aria-hidden="true">8</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Buffer</span>
+              <span class="tag tag-eng">Engineering</span>
+            </div>
+            <div class="title">Senior Growth Engineer</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/buffer/6ee07995-2738-4cee-b16d-fc8967674346" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank" aria-hidden="true">9</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Supabase</span>
+              <span class="tag tag-eng">Engineering</span>
+            </div>
+            <div class="title">Site Reliability Engineer</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/ed6cedb1-b9bf-4609-ac5c-c75c33b31bf3" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank" aria-hidden="true">10</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Supabase</span>
+              <span class="tag tag-eng">Engineering</span>
+            </div>
+            <div class="title">CLI Engineer</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/dd3f74dc-29f8-46b1-bcfb-b7f090b7146a" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank" aria-hidden="true">11</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Supabase</span>
+              <span class="tag tag-eng">Engineering</span>
+            </div>
+            <div class="title">Supalite Engineer</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/b75ba81e-54cc-4393-a575-bc41776b0113" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank" aria-hidden="true">12</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Supabase</span>
+              <span class="tag tag-eng">Engineering</span>
+            </div>
+            <div class="title">Multigres Engineer</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/2e718684-4f75-4a99-8d6b-3b6bd44e4228" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank" aria-hidden="true">13</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Supabase</span>
+              <span class="tag tag-eng">Engineering</span>
+            </div>
+            <div class="title">Postgres Engineer</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/c16bd707-29f2-46fb-8409-7270ff00978b" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank" aria-hidden="true">14</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Supabase</span>
+              <span class="tag tag-eng">Engineering</span>
+            </div>
+            <div class="title">Multigres Deployment Engineer</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/f035bda1-b5d3-4c5b-8736-b9c335fe1c3b" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank" aria-hidden="true">15</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Supabase</span>
+              <span class="tag tag-eng">Engineering</span>
+            </div>
+            <div class="title">Software Engineer: IaC Platform Experience</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/b7206c22-979f-444a-809b-e70d9ee23c7f" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank" aria-hidden="true">16</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Supabase</span>
+              <span class="tag tag-eng">Engineering</span>
+            </div>
+            <div class="title">SDK Engineer - Kotlin</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/ad92f53a-6d0f-4761-abc3-588c7c7c6cd8" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank" aria-hidden="true">17</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Supabase</span>
+              <span class="tag tag-eng">Engineering</span>
+            </div>
+            <div class="title">Postgres Deployment Engineer (Nix)</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/48950725-e0d9-4025-92d9-f75e1b60ce45" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank" aria-hidden="true">18</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Brave</span>
+              <span class="tag tag-eng">Engineering</span>
+            </div>
+            <div class="title">Sr. C++ Web Engineer</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/brave/jobs/7636723" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank" aria-hidden="true">19</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Supabase</span>
+              <span class="tag tag-eng">Engineering</span>
+            </div>
+            <div class="title">Edge Functions Engineer</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/3ab0b926-c9b5-4197-aff2-88d5bf009e13" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank" aria-hidden="true">20</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Wikimedia Foundation</span>
+              <span class="tag tag-product">Product &amp; Technology</span>
+            </div>
+            <div class="title">Software Engineer III, Core Experiences</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/7919287" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank" aria-hidden="true">21</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Mozilla</span>
+              <span class="tag tag-product">New Products</span>
+            </div>
+            <div class="title">Staff AI &amp; Agentic Systems Engineer</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/mozilla/jobs/8041802" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank" aria-hidden="true">22</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Wikimedia Foundation</span>
+              <span class="tag tag-eng">Product &amp; Technology</span>
+            </div>
+            <div class="title">Software Engineer, Wikidata Platform</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/8060261" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank" aria-hidden="true">23</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Wikimedia Foundation</span>
+              <span class="tag tag-product">Product &amp; Technology</span>
+            </div>
+            <div class="title">Software Engineer III, Editing</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/7997194" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank" aria-hidden="true">24</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Wikimedia Foundation</span>
+              <span class="tag tag-product">Product &amp; Technology</span>
+            </div>
+            <div class="title">Senior Software Engineer, MediaWiki</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/7723398" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        <li class="job">
+          <span class="rank" aria-hidden="true">25</span>
+          <div class="job-info">
+            <div class="job-header">
+              <span class="company">Wikimedia Foundation</span>
+              <span class="tag tag-eng">Product &amp; Technology</span>
+            </div>
+            <div class="title">Senior Software Engineer, Wikidata Platform</div>
+          </div>
+          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/8060307" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+        </li>
+        </ol>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        Roles are pulled directly from company ATS feeds (Greenhouse, Ashby, Lever) and
+        filtered for genuine global eligibility — we check for hidden location restrictions
+        in descriptions, not just the location field. Jobs update weekly.
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

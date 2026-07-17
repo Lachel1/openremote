@@ -15,8 +15,8 @@
       --accent:    #1A56DB;
       --accent-h:  #1344B4;
       --entry-bg:  #F0FDF4;
-      --entry-border: #BBF7D0;
-      --entry-head: #15803D;
+      --entry-bd:  #BBF7D0;
+      --entry-fg:  #15803D;
 
       --tag-eng-bg:     #DBEAFE; --tag-eng-fg:     #1E40AF;
       --tag-product-bg: #EDE9FE; --tag-product-fg: #6D28D9;
@@ -36,8 +36,8 @@
         --accent:    #4BA3D4;
         --accent-h:  #6BB8E0;
         --entry-bg:  #0F2E1E;
-        --entry-border: #166534;
-        --entry-head: #4ADE80;
+        --entry-bd:  #166534;
+        --entry-fg:  #4ADE80;
 
         --tag-eng-bg:     #1E3A5F; --tag-eng-fg:     #60A5FA;
         --tag-product-bg: #2D1F50; --tag-product-fg: #A78BFA;
@@ -51,7 +51,7 @@
     :root[data-theme="dark"] {
       --bg:#0C1220; --surface:#131C30; --border:#1E2B45;
       --text:#E8EDF5; --secondary:#8899BB; --accent:#4BA3D4; --accent-h:#6BB8E0;
-      --entry-bg:#0F2E1E; --entry-border:#166534; --entry-head:#4ADE80;
+      --entry-bg:#0F2E1E; --entry-bd:#166534; --entry-fg:#4ADE80;
       --tag-eng-bg:#1E3A5F; --tag-eng-fg:#60A5FA;
       --tag-product-bg:#2D1F50; --tag-product-fg:#A78BFA;
       --tag-design-bg:#3B1530; --tag-design-fg:#F472B6;
@@ -63,7 +63,7 @@
     :root[data-theme="light"] {
       --bg:#F7F8FA; --surface:#FFFFFF; --border:#E2E8F0;
       --text:#0F172A; --secondary:#64748B; --accent:#1A56DB; --accent-h:#1344B4;
-      --entry-bg:#F0FDF4; --entry-border:#BBF7D0; --entry-head:#15803D;
+      --entry-bg:#F0FDF4; --entry-bd:#BBF7D0; --entry-fg:#15803D;
       --tag-eng-bg:#DBEAFE; --tag-eng-fg:#1E40AF;
       --tag-product-bg:#EDE9FE; --tag-product-fg:#6D28D9;
       --tag-design-bg:#FCE7F3; --tag-design-fg:#BE185D;
@@ -87,7 +87,6 @@
 
     .container { max-width: 780px; margin: 0 auto; padding: 0 1.25rem; }
 
-    /* Masthead */
     .masthead { padding: 3rem 0 1.75rem; border-bottom: 1px solid var(--border); }
     .brand {
       font-family: 'Iowan Old Style', 'Palatino Linotype', Georgia, 'Times New Roman', serif;
@@ -110,38 +109,30 @@
     }
     .dot { width: 6px; height: 6px; border-radius: 50%; background: #22C55E; flex-shrink: 0; }
 
-    /* Section headings */
-    .section { margin-top: 2rem; }
-    .section-head {
-      display: flex; align-items: baseline; gap: 0.6rem;
-      margin-bottom: 0.25rem; padding-bottom: 0.6rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .section-title {
-      font-size: 0.75rem; font-weight: 700;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--secondary);
-    }
-    .section-count {
-      font-size: 0.72rem; color: var(--secondary);
-    }
-
-    /* Entry-level section */
+    /* Sections */
     .entry-section {
       background: var(--entry-bg);
-      border: 1px solid var(--entry-border);
+      border: 1px solid var(--entry-bd);
       border-radius: 10px;
       padding: 1rem 1.25rem;
       margin-top: 2rem;
     }
-    .entry-section .section-head {
-      border-bottom-color: var(--entry-border);
+    .section { margin-top: 2rem; }
+    .sec-head {
+      display: flex; align-items: baseline; gap: 0.6rem;
+      padding-bottom: 0.6rem; margin-bottom: 0.1rem;
+      border-bottom: 1px solid var(--border);
     }
-    .entry-section .section-title { color: var(--entry-head); }
-    .entry-section .section-count { color: var(--entry-head); opacity: 0.7; }
+    .entry-section .sec-head { border-bottom-color: var(--entry-bd); }
+    .sec-title {
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--secondary);
+    }
+    .entry-section .sec-title { color: var(--entry-fg); }
+    .sec-count { font-size: 0.72rem; color: var(--secondary); }
+    .entry-section .sec-count { color: var(--entry-fg); opacity: 0.7; }
     .entry-desc {
-      font-size: 0.8rem; color: var(--entry-head); opacity: 0.8;
-      margin-bottom: 0.5rem;
+      font-size: 0.8rem; color: var(--entry-fg); opacity: 0.85; margin-bottom: 0.4rem;
     }
 
     /* Job rows */
@@ -156,19 +147,18 @@
       border-radius: 6px;
       transition: background 0.12s ease, padding 0.12s ease;
     }
-    .entry-section .job { border-bottom-color: var(--entry-border); }
+    .entry-section .job { border-bottom-color: var(--entry-bd); }
     .entry-section .job:last-child { border-bottom: none; }
     .job:hover {
       background: var(--surface);
       padding-left: 1rem; padding-right: 1rem; margin: 0 -0.5rem;
     }
-    .entry-section .job:hover { background: var(--surface); }
     .rank {
       font-size: 2rem; font-weight: 800; color: var(--rank-color);
       font-variant-numeric: tabular-nums; line-height: 1;
       text-align: right; user-select: none; transition: color 0.12s;
     }
-    .rank-dot { font-size: 1.5rem; color: var(--entry-border); }
+    .rank-dot { font-size: 1.5rem; color: var(--entry-bd); text-align: right; }
     .job:hover .rank { color: var(--border); }
     .job-info { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
     .job-header { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
@@ -219,393 +209,1098 @@
       <div class="brand">Open<span class="brand-accent">Remote</span></div>
       <p class="tagline">Verified remote roles open to applicants worldwide — no country restrictions hidden in the description.</p>
       <div class="meta-row">
-        <span class="pill"><span class="dot"></span>33 verified roles</span>
+        <span class="pill"><span class="dot"></span>94 verified roles</span>
         <span>Week of July 17, 2026</span>
       </div>
     </header>
 
     <main>
-      <!-- Entry-level section -->
       <section class="entry-section" aria-label="Entry-level picks">
-        <div class="section-head">
-          <span class="section-title">Entry-Level Picks</span>
-          <span class="section-count">8 roles</span>
+        <div class="sec-head">
+          <span class="sec-title">Entry-Level Picks</span>
+          <span class="sec-count">8 roles</span>
         </div>
         <p class="entry-desc">Support, associate, and junior roles — good starting points for early-career candidates.</p>
         <ol class="job-list" aria-label="Entry-level job listings">
-        <li class="job">
-          <span class="rank rank-dot" aria-hidden="true">·</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Automattic</span>
-              <span class="tag tag-eng">Happiness Engineering</span>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Automattic</span>
+                <span class="tag tag-eng">Happiness Engineering</span>
+              </div>
+              <div class="title">Happiness Engineer – Customer Support &amp; Success</div>
             </div>
-            <div class="title">Happiness Engineer – Customer Support &amp; Success</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/automatticcareers/jobs/6216089" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank rank-dot" aria-hidden="true">·</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Automattic</span>
-              <span class="tag tag-eng">Happiness Engineering</span>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/automatticcareers/jobs/6216089" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Automattic</span>
+                <span class="tag tag-eng">Happiness Engineering</span>
+              </div>
+              <div class="title">Technical Support Team Lead, Pressable</div>
             </div>
-            <div class="title">Technical Support Team Lead, Pressable</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/automatticcareers/jobs/7943152" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank rank-dot" aria-hidden="true">·</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Clipboard Health</span>
-              <span class="tag tag-support">Customer Operations</span>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/automatticcareers/jobs/7943152" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Clipboard Health</span>
+                <span class="tag tag-support">Customer Operations</span>
+              </div>
+              <div class="title">Technical Support Engineer</div>
             </div>
-            <div class="title">Technical Support Engineer</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/clipboard/d77b2224-307f-48b1-a0ea-ab67153993c0" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank rank-dot" aria-hidden="true">·</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Clipboard Health</span>
-              <span class="tag tag-support">Customer Operations</span>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/clipboard/d77b2224-307f-48b1-a0ea-ab67153993c0" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Clipboard Health</span>
+                <span class="tag tag-support">Customer Operations</span>
+              </div>
+              <div class="title">Customer Experience Specialist</div>
             </div>
-            <div class="title">Customer Experience Specialist</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/clipboard/48cd8693-92b0-4d11-9eaf-10402426fe3e" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank rank-dot" aria-hidden="true">·</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Clipboard Health</span>
-              <span class="tag tag-support">Customer Operations</span>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/clipboard/48cd8693-92b0-4d11-9eaf-10402426fe3e" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Clipboard Health</span>
+                <span class="tag tag-support">Customer Operations</span>
+              </div>
+              <div class="title">Client Support Specialist (Workplaces - B2B)</div>
             </div>
-            <div class="title">Client Support Specialist (Workplaces - B2B)</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/clipboard/26f63db2-b223-47e5-86ef-14563144a4c2" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank rank-dot" aria-hidden="true">·</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Clipboard Health</span>
-              <span class="tag tag-support">Customer Operations</span>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/clipboard/26f63db2-b223-47e5-86ef-14563144a4c2" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Clipboard Health</span>
+                <span class="tag tag-support">Customer Operations</span>
+              </div>
+              <div class="title">Tooling Program Manager</div>
             </div>
-            <div class="title">Tooling Program Manager</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/clipboard/3140ff24-cfdc-4f22-a81f-ccac98ef9120" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank rank-dot" aria-hidden="true">·</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Clipboard Health</span>
-              <span class="tag tag-support">Customer Operations</span>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/clipboard/3140ff24-cfdc-4f22-a81f-ccac98ef9120" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Clipboard Health</span>
+                <span class="tag tag-support">Customer Operations</span>
+              </div>
+              <div class="title">Strategy &amp; Ops Associate, Applied AI</div>
             </div>
-            <div class="title">Strategy &amp; Ops Associate, Applied AI</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/clipboard/48b39937-d8fa-467b-beb0-4fdebfe7bd9f" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank rank-dot" aria-hidden="true">·</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Clipboard Health</span>
-              <span class="tag tag-support">Customer Operations</span>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/clipboard/48b39937-d8fa-467b-beb0-4fdebfe7bd9f" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Clipboard Health</span>
+                <span class="tag tag-support">Customer Operations</span>
+              </div>
+              <div class="title">Customer Support Team Lead</div>
             </div>
-            <div class="title">Customer Support Team Lead</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/clipboard/336f74f7-f7a4-465a-9876-4dfe229ce454" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/clipboard/336f74f7-f7a4-465a-9876-4dfe229ce454" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
         </ol>
       </section>
 
-      <!-- Main ranked section -->
-      <section class="section" aria-label="All verified roles">
-        <div class="section-head">
-          <span class="section-title">All Verified Roles</span>
-          <span class="section-count">25 roles · ranked by relevance</span>
+      <section class="section" aria-label="Engineering &amp; Technical">
+        <div class="sec-head">
+          <span class="sec-title">Engineering &amp; Technical</span>
+          <span class="sec-count">46 roles</span>
         </div>
-        <ol class="job-list" aria-label="All remote job listings">
-        <li class="job">
-          <span class="rank" aria-hidden="true">1</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Remote</span>
-              <span class="tag tag-product">Product</span>
+        <ol class="job-list" aria-label="Engineering &amp; Technical job listings">
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Brave</span>
+                <span class="tag tag-eng">Engineering</span>
+              </div>
+              <div class="title">Staff Security and Privacy Engineer</div>
             </div>
-            <div class="title">Senior Product Manager, Reporting &amp; Insights</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/remotecom/jobs/7792448003" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank" aria-hidden="true">2</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Brave</span>
-              <span class="tag tag-eng">Engineering</span>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/brave/jobs/8026920" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-eng">Security</span>
+              </div>
+              <div class="title">Product Security Engineer</div>
             </div>
-            <div class="title">Staff Security and Privacy Engineer</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/brave/jobs/8026920" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank" aria-hidden="true">3</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Supabase</span>
-              <span class="tag tag-eng">Security</span>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/8d05bc85-53f3-4ebf-b5b4-c88cdb922673" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-eng">Security</span>
+              </div>
+              <div class="title">Security Operations Engineer</div>
             </div>
-            <div class="title">Product Security Engineer</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/8d05bc85-53f3-4ebf-b5b4-c88cdb922673" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank" aria-hidden="true">4</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Supabase</span>
-              <span class="tag tag-eng">Security</span>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/0bcf21fd-e24e-4a0b-b393-ca4eb25896ce" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Brave</span>
+                <span class="tag tag-eng">Security</span>
+              </div>
+              <div class="title">Sr. Security Engineer</div>
             </div>
-            <div class="title">Security Operations Engineer</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/0bcf21fd-e24e-4a0b-b393-ca4eb25896ce" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank" aria-hidden="true">5</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Brave</span>
-              <span class="tag tag-eng">Security</span>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/brave/jobs/8048968" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-eng">Engineering</span>
+              </div>
+              <div class="title">Software Engineer - Auth</div>
             </div>
-            <div class="title">Sr. Security Engineer</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/brave/jobs/8048968" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank" aria-hidden="true">6</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Supabase</span>
-              <span class="tag tag-eng">Engineering</span>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/e569b7f7-fa8f-4139-86f6-4f52b456882d" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Mozilla</span>
+                <span class="tag tag-eng">Firefox</span>
+              </div>
+              <div class="title">Senior Software Engineer - Engineering Workflow and CI</div>
             </div>
-            <div class="title">Software Engineer - Auth</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/e569b7f7-fa8f-4139-86f6-4f52b456882d" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank" aria-hidden="true">7</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Mozilla</span>
-              <span class="tag tag-eng">Firefox</span>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/mozilla/jobs/7782973" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Buffer</span>
+                <span class="tag tag-eng">Engineering</span>
+              </div>
+              <div class="title">Senior Growth Engineer</div>
             </div>
-            <div class="title">Senior Software Engineer - Engineering Workflow and CI</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/mozilla/jobs/7782973" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank" aria-hidden="true">8</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Buffer</span>
-              <span class="tag tag-eng">Engineering</span>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/buffer/6ee07995-2738-4cee-b16d-fc8967674346" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-eng">Engineering</span>
+              </div>
+              <div class="title">Site Reliability Engineer</div>
             </div>
-            <div class="title">Senior Growth Engineer</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/buffer/6ee07995-2738-4cee-b16d-fc8967674346" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank" aria-hidden="true">9</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Supabase</span>
-              <span class="tag tag-eng">Engineering</span>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/ed6cedb1-b9bf-4609-ac5c-c75c33b31bf3" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-eng">Engineering</span>
+              </div>
+              <div class="title">CLI Engineer</div>
             </div>
-            <div class="title">Site Reliability Engineer</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/ed6cedb1-b9bf-4609-ac5c-c75c33b31bf3" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank" aria-hidden="true">10</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Supabase</span>
-              <span class="tag tag-eng">Engineering</span>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/dd3f74dc-29f8-46b1-bcfb-b7f090b7146a" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-eng">Engineering</span>
+              </div>
+              <div class="title">Supalite Engineer</div>
             </div>
-            <div class="title">CLI Engineer</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/dd3f74dc-29f8-46b1-bcfb-b7f090b7146a" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank" aria-hidden="true">11</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Supabase</span>
-              <span class="tag tag-eng">Engineering</span>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/b75ba81e-54cc-4393-a575-bc41776b0113" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-eng">Engineering</span>
+              </div>
+              <div class="title">Multigres Engineer</div>
             </div>
-            <div class="title">Supalite Engineer</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/b75ba81e-54cc-4393-a575-bc41776b0113" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank" aria-hidden="true">12</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Supabase</span>
-              <span class="tag tag-eng">Engineering</span>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/2e718684-4f75-4a99-8d6b-3b6bd44e4228" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-eng">Engineering</span>
+              </div>
+              <div class="title">Postgres Engineer</div>
             </div>
-            <div class="title">Multigres Engineer</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/2e718684-4f75-4a99-8d6b-3b6bd44e4228" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank" aria-hidden="true">13</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Supabase</span>
-              <span class="tag tag-eng">Engineering</span>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/c16bd707-29f2-46fb-8409-7270ff00978b" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-eng">Engineering</span>
+              </div>
+              <div class="title">Multigres Deployment Engineer</div>
             </div>
-            <div class="title">Postgres Engineer</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/c16bd707-29f2-46fb-8409-7270ff00978b" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank" aria-hidden="true">14</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Supabase</span>
-              <span class="tag tag-eng">Engineering</span>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/f035bda1-b5d3-4c5b-8736-b9c335fe1c3b" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-eng">Engineering</span>
+              </div>
+              <div class="title">Software Engineer: IaC Platform Experience</div>
             </div>
-            <div class="title">Multigres Deployment Engineer</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/f035bda1-b5d3-4c5b-8736-b9c335fe1c3b" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank" aria-hidden="true">15</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Supabase</span>
-              <span class="tag tag-eng">Engineering</span>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/b7206c22-979f-444a-809b-e70d9ee23c7f" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-eng">Engineering</span>
+              </div>
+              <div class="title">SDK Engineer - Kotlin</div>
             </div>
-            <div class="title">Software Engineer: IaC Platform Experience</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/b7206c22-979f-444a-809b-e70d9ee23c7f" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank" aria-hidden="true">16</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Supabase</span>
-              <span class="tag tag-eng">Engineering</span>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/ad92f53a-6d0f-4761-abc3-588c7c7c6cd8" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-eng">Engineering</span>
+              </div>
+              <div class="title">Postgres Deployment Engineer (Nix)</div>
             </div>
-            <div class="title">SDK Engineer - Kotlin</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/ad92f53a-6d0f-4761-abc3-588c7c7c6cd8" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank" aria-hidden="true">17</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Supabase</span>
-              <span class="tag tag-eng">Engineering</span>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/48950725-e0d9-4025-92d9-f75e1b60ce45" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Brave</span>
+                <span class="tag tag-eng">Engineering</span>
+              </div>
+              <div class="title">Sr. C++ Web Engineer</div>
             </div>
-            <div class="title">Postgres Deployment Engineer (Nix)</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/48950725-e0d9-4025-92d9-f75e1b60ce45" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank" aria-hidden="true">18</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Brave</span>
-              <span class="tag tag-eng">Engineering</span>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/brave/jobs/7636723" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-eng">Engineering</span>
+              </div>
+              <div class="title">Edge Functions Engineer</div>
             </div>
-            <div class="title">Sr. C++ Web Engineer</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/brave/jobs/7636723" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank" aria-hidden="true">19</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Supabase</span>
-              <span class="tag tag-eng">Engineering</span>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/3ab0b926-c9b5-4197-aff2-88d5bf009e13" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Wikimedia Foundation</span>
+                <span class="tag tag-product">Product &amp; Technology</span>
+              </div>
+              <div class="title">Software Engineer III, Core Experiences</div>
             </div>
-            <div class="title">Edge Functions Engineer</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/3ab0b926-c9b5-4197-aff2-88d5bf009e13" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank" aria-hidden="true">20</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Wikimedia Foundation</span>
-              <span class="tag tag-product">Product &amp; Technology</span>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/7919287" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Mozilla</span>
+                <span class="tag tag-product">New Products</span>
+              </div>
+              <div class="title">Staff AI &amp; Agentic Systems Engineer</div>
             </div>
-            <div class="title">Software Engineer III, Core Experiences</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/7919287" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank" aria-hidden="true">21</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Mozilla</span>
-              <span class="tag tag-product">New Products</span>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/mozilla/jobs/8041802" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Wikimedia Foundation</span>
+                <span class="tag tag-eng">Product &amp; Technology</span>
+              </div>
+              <div class="title">Software Engineer, Wikidata Platform</div>
             </div>
-            <div class="title">Staff AI &amp; Agentic Systems Engineer</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/mozilla/jobs/8041802" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank" aria-hidden="true">22</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Wikimedia Foundation</span>
-              <span class="tag tag-eng">Product &amp; Technology</span>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/8060261" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Wikimedia Foundation</span>
+                <span class="tag tag-product">Product &amp; Technology</span>
+              </div>
+              <div class="title">Software Engineer III, Editing</div>
             </div>
-            <div class="title">Software Engineer, Wikidata Platform</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/8060261" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank" aria-hidden="true">23</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Wikimedia Foundation</span>
-              <span class="tag tag-product">Product &amp; Technology</span>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/7997194" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Wikimedia Foundation</span>
+                <span class="tag tag-product">Product &amp; Technology</span>
+              </div>
+              <div class="title">Senior Software Engineer, MediaWiki</div>
             </div>
-            <div class="title">Software Engineer III, Editing</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/7997194" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank" aria-hidden="true">24</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Wikimedia Foundation</span>
-              <span class="tag tag-product">Product &amp; Technology</span>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/7723398" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Wikimedia Foundation</span>
+                <span class="tag tag-eng">Product &amp; Technology</span>
+              </div>
+              <div class="title">Senior Software Engineer, Wikidata Platform</div>
             </div>
-            <div class="title">Senior Software Engineer, MediaWiki</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/7723398" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
-        <li class="job">
-          <span class="rank" aria-hidden="true">25</span>
-          <div class="job-info">
-            <div class="job-header">
-              <span class="company">Wikimedia Foundation</span>
-              <span class="tag tag-eng">Product &amp; Technology</span>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/8060307" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Wikimedia Foundation</span>
+                <span class="tag tag-eng">Product &amp; Technology</span>
+              </div>
+              <div class="title">Senior Site Reliability Engineer, Infrastructure Foundations</div>
             </div>
-            <div class="title">Senior Software Engineer, Wikidata Platform</div>
-          </div>
-          <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/8060307" target="_blank" rel="noopener noreferrer">Apply →</a></div>
-        </li>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/7921820" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Wikimedia Foundation</span>
+                <span class="tag tag-eng">Product &amp; Technology</span>
+              </div>
+              <div class="title">Senior Site Reliability Engineer, Data Persistence</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/7972965" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Wikimedia Foundation</span>
+                <span class="tag tag-product">Product &amp; Technology</span>
+              </div>
+              <div class="title">Senior Software Engineer, Core Experiences</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/7875719" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Wikimedia Foundation</span>
+                <span class="tag tag-eng">Product &amp; Technology</span>
+              </div>
+              <div class="title">Senior Data Scientist, Ecosystems</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/7913716" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Netlify</span>
+                <span class="tag tag-eng">R&amp;D</span>
+              </div>
+              <div class="title">Staff Product Manager (Accounts &amp; Billing)</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/netlify/jobs/8603630002" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-design">Design</span>
+              </div>
+              <div class="title">Design Engineer</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/2e6ee4b3-6573-477f-9c95-d1221cd9f9f9" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Mozilla</span>
+                <span class="tag tag-eng">Core Services</span>
+              </div>
+              <div class="title">Senior Data Engineer</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/mozilla/jobs/7722778" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Netlify</span>
+                <span class="tag tag-eng">R&amp;D</span>
+              </div>
+              <div class="title">Principal Product Manager (Growth)</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/netlify/jobs/8603652002" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Mozilla</span>
+                <span class="tag tag-eng">Core Services</span>
+              </div>
+              <div class="title">Staff Data Scientist, Firefox</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/mozilla/jobs/7834520" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Mozilla</span>
+                <span class="tag tag-eng">Core Services</span>
+              </div>
+              <div class="title">Senior Staff Data Scientist</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/mozilla/jobs/8031046" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-eng">Engineering</span>
+              </div>
+              <div class="title">Engineering Manager</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/99a80436-89ec-412b-b782-1dd462bd16dc" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-eng">Engineering</span>
+              </div>
+              <div class="title">Senior Manager - Technical Program Management</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/f6027734-f9f6-4711-ac21-88844a6d9d3f" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Wikimedia Foundation</span>
+                <span class="tag tag-eng">Advancement</span>
+              </div>
+              <div class="title">Senior Engineering Manager, Wikimedia Enterprise</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/7946475" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-eng">Growth</span>
+              </div>
+              <div class="title">Senior Data Engineer</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/44f6de1c-0fdc-4d46-aa3e-7d57b8be38b2" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-eng">Engineering</span>
+              </div>
+              <div class="title">Head of Observability</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/3d788231-c984-4bf7-bd8f-ca242988db4f" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Automattic</span>
+                <span class="tag tag-other">Code Wrangling</span>
+              </div>
+              <div class="title">Experienced Software Engineer</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/automatticcareers/jobs/5862239" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">GitLab</span>
+                <span class="tag tag-other">SA</span>
+              </div>
+              <div class="title">Manager, Solutions Architect - UK&amp;I</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/gitlab/jobs/8626762002" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Automattic</span>
+                <span class="tag tag-other">Systems Wrangling</span>
+              </div>
+              <div class="title">Senior Systems Engineer</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/automatticcareers/jobs/5980233" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Wikimedia Foundation</span>
+                <span class="tag tag-other">Advancement</span>
+              </div>
+              <div class="title">Senior Site Reliability Engineer, Wikimedia Enterprise</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/7946461" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Mozilla</span>
+                <span class="tag tag-other">Firefox</span>
+              </div>
+              <div class="title">Senior Software Engineer, Accessibility</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/mozilla/jobs/8055489" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Automattic</span>
+                <span class="tag tag-other">Technical Account Manager</span>
+              </div>
+              <div class="title">Technical Account Manager, Automattic Special Projects Team</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/automatticcareers/jobs/6458591" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Automattic</span>
+                <span class="tag tag-other">Technical Account Manager</span>
+              </div>
+              <div class="title">Technical Account Manager, Newspack</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/automatticcareers/jobs/5442133" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section" aria-label="Product &amp; Design">
+        <div class="sec-head">
+          <span class="sec-title">Product &amp; Design</span>
+          <span class="sec-count">13 roles</span>
+        </div>
+        <ol class="job-list" aria-label="Product &amp; Design job listings">
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Remote</span>
+                <span class="tag tag-product">Product</span>
+              </div>
+              <div class="title">Senior Product Manager, Reporting &amp; Insights</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/remotecom/jobs/7792448003" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Automattic</span>
+                <span class="tag tag-product">Product Manager</span>
+              </div>
+              <div class="title">Product Manager, Growth &amp; Analytics, Beeper</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/automatticcareers/jobs/7796540" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-product">Product</span>
+              </div>
+              <div class="title">Product Manager - Interfaces</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/184c3ad5-5d5f-44a1-98f7-65ff6f287b2f" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Automattic</span>
+                <span class="tag tag-product">Product Manager</span>
+              </div>
+              <div class="title">Senior Product Manager, Payments</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/automatticcareers/jobs/7482858" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-eng">Product</span>
+              </div>
+              <div class="title">Product Manager - Infrastructure</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/47bcfdb8-b954-423e-8a9e-85256434575c" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Automattic</span>
+                <span class="tag tag-product">Product Design</span>
+              </div>
+              <div class="title">Senior Product Designer</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/automatticcareers/jobs/2127794" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-design">Design</span>
+              </div>
+              <div class="title">Brand Designer</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/4a85c92b-1d0d-43ee-8dbc-0e45a58be208" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Wikimedia Foundation</span>
+                <span class="tag tag-eng">Product &amp; Technology</span>
+              </div>
+              <div class="title">Manager, Data Science (Product Analytics)</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/7604186" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Cloudflare</span>
+                <span class="tag tag-product">Product Specialist</span>
+              </div>
+              <div class="title">Senior Cloudflare One GTM Specialist</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://boards.greenhouse.io/cloudflare/jobs/7534033?gh_jid=7534033" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Mozilla</span>
+                <span class="tag tag-product">New Products</span>
+              </div>
+              <div class="title">Senior Business Development Manager, New Products</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/mozilla/jobs/8039956" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Wikimedia Foundation</span>
+                <span class="tag tag-product">Product &amp; Technology</span>
+              </div>
+              <div class="title">Lead Product Partnerships Manager (Fixed Term Contract)</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/7974145" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-product">Product</span>
+              </div>
+              <div class="title">Core Product Lead</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/f2f28afa-4b42-43c7-b977-48f5b686fba2" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Wikimedia Foundation</span>
+                <span class="tag tag-other">Advancement</span>
+              </div>
+              <div class="title">Italian Translator / Linguist (Contract)</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/8023197" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section" aria-label="Support &amp; Operations">
+        <div class="sec-head">
+          <span class="sec-title">Support &amp; Operations</span>
+          <span class="sec-count">4 roles</span>
+        </div>
+        <ol class="job-list" aria-label="Support &amp; Operations job listings">
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-devrel">Growth</span>
+              </div>
+              <div class="title">Commercial FinOps Lead</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/d2707c73-fe36-4f23-b53a-dde88d7f1132" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-devrel">Growth</span>
+              </div>
+              <div class="title">Partner Operations &amp; Systems Lead</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/577bdf6d-f34b-4b9e-8d6b-b96776675c94" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Automattic</span>
+                <span class="tag tag-other">Business Operations Wrangler</span>
+              </div>
+              <div class="title">Senior Revenue Operations Manager</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/automatticcareers/jobs/7475345" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-other">Operations</span>
+              </div>
+              <div class="title">People Business Partner</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/e84502e7-9dab-437a-af38-9da03542fab7" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section" aria-label="Marketing &amp; Community">
+        <div class="sec-head">
+          <span class="sec-title">Marketing &amp; Community</span>
+          <span class="sec-count">7 roles</span>
+        </div>
+        <ol class="job-list" aria-label="Marketing &amp; Community job listings">
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Automattic</span>
+                <span class="tag tag-devrel">Growth Marketer</span>
+              </div>
+              <div class="title">Senior Manager, Demand Generation, WordPress VIP</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/automatticcareers/jobs/7946386" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-devrel">Growth</span>
+              </div>
+              <div class="title">Strategic Partner Manager</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/cb04ae3a-3a47-4e21-928f-c2456b7b214e" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-devrel">Growth</span>
+              </div>
+              <div class="title">Social Media Manager</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/d7a5b422-8c57-400d-9eac-059d5dbe4632" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Supabase</span>
+                <span class="tag tag-devrel">Growth</span>
+              </div>
+              <div class="title">GTM Strategist</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://jobs.ashbyhq.com/supabase/23a39e2b-333a-438c-b4e6-cf7cdde27e78" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Automattic</span>
+                <span class="tag tag-devrel">Growth Marketer</span>
+              </div>
+              <div class="title">Senior Social and Community Strategist, WordPress VIP</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/automatticcareers/jobs/7946367" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Automattic</span>
+                <span class="tag tag-devrel">Marketing Wrangler</span>
+              </div>
+              <div class="title">Senior Manager of Experiential Marketing, WordPress VIP</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/automatticcareers/jobs/7946338" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Cloudflare</span>
+                <span class="tag tag-devrel">Field Sales</span>
+              </div>
+              <div class="title">Director, Growth Sales (AI &amp; Digital Natives)</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://boards.greenhouse.io/cloudflare/jobs/8039122?gh_jid=8039122" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section" aria-label="Other">
+        <div class="sec-head">
+          <span class="sec-title">Other</span>
+          <span class="sec-count">16 roles</span>
+        </div>
+        <ol class="job-list" aria-label="Other job listings">
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Mozilla</span>
+                <span class="tag tag-eng">Core Services</span>
+              </div>
+              <div class="title">Lead Privacy Counsel, Infrastructure &amp; Data Governance</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/mozilla/jobs/7993212" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Wikimedia Foundation</span>
+                <span class="tag tag-other">Advancement</span>
+              </div>
+              <div class="title">Sales Development Representative, Wikimedia Enterprise</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/7988888" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Automattic</span>
+                <span class="tag tag-other">Finance Wrangler</span>
+              </div>
+              <div class="title">Strategic Finance Manager, WordPress.com</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/automatticcareers/jobs/7925416" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Mozilla</span>
+                <span class="tag tag-other">Office of CEO</span>
+              </div>
+              <div class="title">Executive Assistant, Finance</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/mozilla/jobs/8053927" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Automattic</span>
+                <span class="tag tag-other">Sales Wrangler</span>
+              </div>
+              <div class="title">Global Account Director, Payment Partnerships - WooCommerce</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/automatticcareers/jobs/7889285" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Wikimedia Foundation</span>
+                <span class="tag tag-other">Legal</span>
+              </div>
+              <div class="title">Senior Legal Counsel</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/7789340" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Wikimedia Foundation</span>
+                <span class="tag tag-other">Template</span>
+              </div>
+              <div class="title">Senior People Business Partner</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/8014402" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Automattic</span>
+                <span class="tag tag-other">Partnerships Manager</span>
+              </div>
+              <div class="title">Director of Strategic Partnerships, WooCommerce</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/automatticcareers/jobs/6894268" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Wikimedia Foundation</span>
+                <span class="tag tag-other">People Department</span>
+              </div>
+              <div class="title">Program Manager, People Transformation</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/8055857" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Automattic</span>
+                <span class="tag tag-other">Executive Assistant</span>
+              </div>
+              <div class="title">Executive Assistant to CEO</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/automatticcareers/jobs/7487705" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Automattic</span>
+                <span class="tag tag-other">Account Executive</span>
+              </div>
+              <div class="title">Account Executive, Public Sector</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/automatticcareers/jobs/6381135" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Automattic</span>
+                <span class="tag tag-other">Account Executive</span>
+              </div>
+              <div class="title">Account Executive, WordPress VIP</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/automatticcareers/jobs/5867610" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Automattic</span>
+                <span class="tag tag-other">Account Executive</span>
+              </div>
+              <div class="title">Senior Partner Manager, Enterprise</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/automatticcareers/jobs/7482826" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Wikimedia Foundation</span>
+                <span class="tag tag-other">Advancement</span>
+              </div>
+              <div class="title">Lead Specialist, Audience Development &amp; Fundraising (Contract)</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/wikimedia/jobs/8046205" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Mozilla</span>
+                <span class="tag tag-other">Core Services</span>
+              </div>
+              <div class="title">Staff Program Manager, Trust &amp; Safety</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/mozilla/jobs/8026285" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
+          <li class="job">
+            <span class="rank rank-dot" aria-hidden="true">·</span>
+            <div class="job-info">
+              <div class="job-header">
+                <span class="company">Netlify</span>
+                <span class="tag tag-other">GTM</span>
+              </div>
+              <div class="title">Social Media Manager</div>
+            </div>
+            <div class="job-action"><a class="apply-btn" href="https://job-boards.greenhouse.io/netlify/jobs/8585518002" target="_blank" rel="noopener noreferrer">Apply →</a></div>
+          </li>
         </ol>
       </section>
     </main>

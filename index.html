@@ -311,6 +311,20 @@
       margin: 0 !important; background: none !important;
       border: none !important; box-shadow: none !important; padding: 0 !important;
     }
+    /* Remove Kit's background overlay (takes up space even at opacity 0.2) */
+    .masthead-signup .formkit-background,
+    .signup-block .formkit-background { display: none !important; }
+    /* Kit applies padding:40px to [data-style="minimal"] at >=600px width.
+       Target it directly — our !important beats Kit's non-!important rule. */
+    .masthead-signup [data-style="minimal"],
+    .signup-block [data-style="minimal"] { padding: 0 !important; }
+    /* Belt-and-braces: zero all direct child divs too */
+    .masthead-signup .formkit-form > div,
+    .masthead-signup .formkit-form ul,
+    .signup-block .formkit-form > div,
+    .signup-block .formkit-form ul {
+      padding: 0 !important; margin: 0 !important;
+    }
     .masthead-signup .formkit-header,
     .masthead-signup .formkit-subheader,
     .masthead-signup .formkit-guarantee,
@@ -321,7 +335,7 @@
     .signup-block .formkit-guarantee,
     .signup-block .formkit-powered-by-convertkit-container,
     .signup-block [data-element="powered-by-convertkit"] {
-      display: none !important;
+      display: none !important; height: 0 !important; overflow: hidden !important;
     }
     /* Stack field above button in the narrow header column */
     .masthead-signup .formkit-fields {
@@ -2639,6 +2653,27 @@
       try { saved = localStorage.getItem('or-tab'); } catch(e) {}
       var initial = Array.from(tabs).find(function(t) { return t.dataset.id === saved; }) || tabs[0];
       if (initial) activate(initial);
+    })();
+
+    // Strip Kit's internal chrome (background overlay + 40px padding) after it renders.
+    // Kit injects its own <style> asynchronously, so CSS !important loses.
+    // Inline styles beat any stylesheet, so we apply them via JS instead.
+    (function () {
+      function stripKit(root) {
+        root.querySelectorAll('.formkit-background').forEach(function (el) {
+          el.style.cssText = 'display:none!important';
+        });
+        root.querySelectorAll('[data-style="minimal"]').forEach(function (el) {
+          el.style.padding = '0';
+        });
+      }
+      // Run on initial load and watch for Kit's async injection
+      var containers = document.querySelectorAll('.masthead-signup, .signup-block');
+      containers.forEach(function (c) {
+        stripKit(c);
+        new MutationObserver(function () { stripKit(c); })
+          .observe(c, { childList: true, subtree: true });
+      });
     })();
 
     // Track Kit form signups via GoatCounter.

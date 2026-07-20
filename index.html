@@ -2687,6 +2687,18 @@
           window.goatcounter.count({ path: 'subscribe', event: true });
         }
       } catch (e) {}
+      // After Kit shows its success message, append inbox-check hint.
+      setTimeout(function () {
+        document.querySelectorAll('.formkit-alert-success, [data-element="success"]').forEach(function (el) {
+          if (!el.querySelector('.inbox-hint')) {
+            var hint = document.createElement('p');
+            hint.className = 'inbox-hint';
+            hint.style.cssText = 'margin-top:0.5rem;font-size:0.75rem;opacity:0.8;';
+            hint.textContent = "Check your inbox to confirm. If it’s not there, look in spam/promotions and mark it ‘not spam’.";
+            el.appendChild(hint);
+          }
+        });
+      }, 800);
     });
   </script>
 

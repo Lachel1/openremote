@@ -257,6 +257,48 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { transition: none !important; }
     }
+
+    /* ── Email signup block ── */
+    .signup-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem 1rem;
+      margin-top: 1.75rem;
+      max-width: 480px;
+    }
+    .signup-cta {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+    }
+    .signup-fine {
+      font-size: 0.75rem;
+      color: var(--secondary);
+      margin-top: 0.5rem;
+    }
+    /* Kit injects .formkit-form — nudge it to fill the block */
+    .signup-block .formkit-form { margin: 0 !important; }
+    .signup-block .formkit-fields { gap: 0.5rem; }
+    .signup-block .formkit-field input,
+    .signup-block .formkit-submit {
+      font-size: 0.9375rem !important;
+      border-radius: 6px !important;
+      min-height: 44px;   /* comfortable tap target on mobile */
+    }
+    .signup-block .formkit-submit {
+      background: var(--accent) !important;
+      border-color: var(--accent) !important;
+    }
+    .signup-block .formkit-submit:hover {
+      background: var(--accent-h) !important;
+      border-color: var(--accent-h) !important;
+    }
+    @media (max-width: 520px) {
+      .signup-block { max-width: 100%; padding: 1rem; }
+    }
   </style>
 </head>
 <body>
@@ -269,6 +311,13 @@
         <span>Week of July 20, 2026</span>
       </div>
     </header>
+
+    
+    <div class="signup-block">
+      <p class="signup-cta">📬 New global-open roles added every week. Don't keep checking back — get them in your inbox.</p>
+      <script async data-uid="4f125bcf88" src="https://openremote.kit.com/4f125bcf88/index.js"></script>
+      <p class="signup-fine">Free. Unsubscribe anytime.</p>
+    </div>
 
     <main>
       <div class="tab-bar" role="tablist" aria-label="Job categories">
@@ -2501,6 +2550,13 @@
       </div>
     </main>
 
+    
+    <div class="signup-block">
+      <p class="signup-cta">📬 New global-open roles added every week. Don't keep checking back — get them in your inbox.</p>
+      <script async data-uid="4f125bcf88" src="https://openremote.kit.com/4f125bcf88/index.js"></script>
+      <p class="signup-fine">Free. Unsubscribe anytime.</p>
+    </div>
+
   <script>
     (function () {
       var tabs   = document.querySelectorAll('.tab');
@@ -2525,6 +2581,17 @@
       var initial = Array.from(tabs).find(function(t) { return t.dataset.id === saved; }) || tabs[0];
       if (initial) activate(initial);
     })();
+
+    // Track Kit form signups via GoatCounter.
+    // Kit fires 'formkit:submit' on the document when the form is submitted.
+    // Degrades silently if GoatCounter or Kit is blocked.
+    document.addEventListener('formkit:submit', function () {
+      try {
+        if (window.goatcounter && window.goatcounter.count) {
+          window.goatcounter.count({ path: 'subscribe', event: true });
+        }
+      } catch (e) {}
+    });
   </script>
 
     <footer class="site-footer">

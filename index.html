@@ -143,7 +143,7 @@
 
     .container { max-width: 780px; margin: 0 auto; padding: 0 1.25rem; }
 
-    .masthead { padding: 3rem 0 1.75rem; border-bottom: 1px solid var(--border); }
+    .masthead { /* layout set in signup block section above */ }
     .brand {
       font-family: 'Iowan Old Style', 'Palatino Linotype', Georgia, 'Times New Roman', serif;
       font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.45rem;
@@ -258,31 +258,64 @@
       *, *::before, *::after { transition: none !important; }
     }
 
-    /* ── Email signup block ── */
+    /* ── Masthead two-column layout ── */
+    .masthead {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      padding: 3rem 0 1.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .masthead-left { flex: 1; min-width: 0; }
+
+    /* ── Compact header signup (right column) ── */
+    .masthead-signup {
+      flex-shrink: 0;
+      width: 210px;
+      padding: 0.85rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-top: 0.25rem;
+    }
+    .signup-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--secondary);
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+    .signup-fine {
+      font-size: 0.7rem;
+      color: var(--secondary);
+      margin-top: 0.4rem;
+      opacity: 0.75;
+    }
+    /* ── Bottom signup block ── */
     .signup-block {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 1.25rem 1.5rem 1rem;
-      margin-top: 1.75rem;
+      margin-top: 2rem;
       max-width: 480px;
     }
-    .signup-cta {
-      font-size: 0.9375rem;
-      font-weight: 500;
+    .signup-block .signup-label {
+      font-size: 0.9rem;
       color: var(--text);
-      line-height: 1.5;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.6rem;
     }
-    .signup-fine {
-      font-size: 0.75rem;
-      color: var(--secondary);
-      margin-top: 0.5rem;
+    /* ── Kit chrome reset (both placements) ── */
+    .masthead-signup .formkit-form,
+    .signup-block .formkit-form {
+      margin: 0 !important; background: none !important;
+      border: none !important; box-shadow: none !important; padding: 0 !important;
     }
-    /* Kit injects .formkit-form — strip its own chrome, keep just the field+button */
-    .signup-block .formkit-form { margin: 0 !important; background: none !important;
-      border: none !important; box-shadow: none !important; padding: 0 !important; }
-    /* Hide Kit's own heading, subheading, guarantee, and branding */
+    .masthead-signup .formkit-header,
+    .masthead-signup .formkit-subheader,
+    .masthead-signup .formkit-guarantee,
+    .masthead-signup .formkit-powered-by-convertkit-container,
+    .masthead-signup [data-element="powered-by-convertkit"],
     .signup-block .formkit-header,
     .signup-block .formkit-subheader,
     .signup-block .formkit-guarantee,
@@ -290,63 +323,60 @@
     .signup-block [data-element="powered-by-convertkit"] {
       display: none !important;
     }
-    /* Inline field + button row */
+    /* Stack field above button in the narrow header column */
+    .masthead-signup .formkit-fields {
+      display: flex !important; flex-direction: column !important; gap: 0.4rem !important;
+    }
+    /* Inline row for the wider bottom block */
     .signup-block .formkit-fields {
-      display: flex !important;
-      flex-direction: row !important;
-      gap: 0.5rem !important;
-      flex-wrap: wrap;
+      display: flex !important; flex-direction: row !important;
+      gap: 0.5rem !important; flex-wrap: wrap;
     }
-    .signup-block .formkit-field {
-      flex: 1 1 200px !important;
-    }
+    .signup-block .formkit-field { flex: 1 1 180px !important; }
+    /* Shared input styles */
+    .masthead-signup .formkit-field input,
     .signup-block .formkit-field input {
-      width: 100% !important;
-      font-size: 0.9375rem !important;
-      border-radius: 6px !important;
-      border: 1px solid var(--border) !important;
-      background: var(--bg) !important;
-      color: var(--text) !important;
-      padding: 0.6rem 0.75rem !important;
-      min-height: 44px;
+      width: 100% !important; font-size: 0.8125rem !important;
+      border-radius: 6px !important; border: 1px solid var(--border) !important;
+      background: var(--bg) !important; color: var(--text) !important;
+      padding: 0.5rem 0.65rem !important; min-height: 38px; box-sizing: border-box !important;
     }
+    /* Shared button styles */
+    .masthead-signup .formkit-submit,
     .signup-block .formkit-submit {
-      flex-shrink: 0;
-      font-size: 0.9375rem !important;
-      border-radius: 6px !important;
-      min-height: 44px !important;
-      padding: 0 1.25rem !important;
-      background: var(--accent) !important;
-      border-color: var(--accent) !important;
-      cursor: pointer;
+      width: 100% !important; font-size: 0.8125rem !important;
+      border-radius: 6px !important; min-height: 38px !important;
+      padding: 0 1rem !important; background: var(--accent) !important;
+      border-color: var(--accent) !important; cursor: pointer;
     }
+    .masthead-signup .formkit-submit:hover,
     .signup-block .formkit-submit:hover {
-      background: var(--accent-h) !important;
-      border-color: var(--accent-h) !important;
+      background: var(--accent-h) !important; border-color: var(--accent-h) !important;
     }
-    @media (max-width: 520px) {
-      .signup-block { max-width: 100%; padding: 1rem; }
-      .signup-block .formkit-fields { flex-direction: column !important; }
+    @media (max-width: 600px) {
+      .masthead { flex-direction: column; gap: 1.25rem; }
+      .masthead-signup { width: 100%; }
+      .signup-block { max-width: 100%; }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <header class="masthead">
-      <div class="brand">Open<span class="brand-accent">Remote</span></div>
-      <p class="tagline">Verified remote roles open to applicants worldwide — no country restrictions hidden in the description.</p>
-      <div class="meta-row">
-        <span class="pill"><span class="dot"></span>199 verified roles</span>
-        <span>Week of July 20, 2026</span>
+      <div class="masthead-left">
+        <div class="brand">Open<span class="brand-accent">Remote</span></div>
+        <p class="tagline">Verified remote roles open to applicants worldwide — no country restrictions hidden in the description.</p>
+        <div class="meta-row">
+          <span class="pill"><span class="dot"></span>199 verified roles</span>
+          <span>Week of July 20, 2026</span>
+        </div>
+      </div>
+      <div class="masthead-signup">
+        <p class="signup-label">📬 Get new roles in your inbox weekly</p>
+        <script async data-uid="4f125bcf88" src="https://openremote.kit.com/4f125bcf88/index.js"></script>
+        <p class="signup-fine">Free. Unsubscribe anytime.</p>
       </div>
     </header>
-
-    
-    <div class="signup-block">
-      <p class="signup-cta">📬 New global-open roles added every week. Don't keep checking back — get them in your inbox.</p>
-      <script async data-uid="4f125bcf88" src="https://openremote.kit.com/4f125bcf88/index.js"></script>
-      <p class="signup-fine">Free. Unsubscribe anytime.</p>
-    </div>
 
     <main>
       <div class="tab-bar" role="tablist" aria-label="Job categories">

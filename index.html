@@ -279,18 +279,46 @@
       color: var(--secondary);
       margin-top: 0.5rem;
     }
-    /* Kit injects .formkit-form — nudge it to fill the block */
-    .signup-block .formkit-form { margin: 0 !important; }
-    .signup-block .formkit-fields { gap: 0.5rem; }
-    .signup-block .formkit-field input,
-    .signup-block .formkit-submit {
+    /* Kit injects .formkit-form — strip its own chrome, keep just the field+button */
+    .signup-block .formkit-form { margin: 0 !important; background: none !important;
+      border: none !important; box-shadow: none !important; padding: 0 !important; }
+    /* Hide Kit's own heading, subheading, guarantee, and branding */
+    .signup-block .formkit-header,
+    .signup-block .formkit-subheader,
+    .signup-block .formkit-guarantee,
+    .signup-block .formkit-powered-by-convertkit-container,
+    .signup-block [data-element="powered-by-convertkit"] {
+      display: none !important;
+    }
+    /* Inline field + button row */
+    .signup-block .formkit-fields {
+      display: flex !important;
+      flex-direction: row !important;
+      gap: 0.5rem !important;
+      flex-wrap: wrap;
+    }
+    .signup-block .formkit-field {
+      flex: 1 1 200px !important;
+    }
+    .signup-block .formkit-field input {
+      width: 100% !important;
       font-size: 0.9375rem !important;
       border-radius: 6px !important;
-      min-height: 44px;   /* comfortable tap target on mobile */
+      border: 1px solid var(--border) !important;
+      background: var(--bg) !important;
+      color: var(--text) !important;
+      padding: 0.6rem 0.75rem !important;
+      min-height: 44px;
     }
     .signup-block .formkit-submit {
+      flex-shrink: 0;
+      font-size: 0.9375rem !important;
+      border-radius: 6px !important;
+      min-height: 44px !important;
+      padding: 0 1.25rem !important;
       background: var(--accent) !important;
       border-color: var(--accent) !important;
+      cursor: pointer;
     }
     .signup-block .formkit-submit:hover {
       background: var(--accent-h) !important;
@@ -298,6 +326,7 @@
     }
     @media (max-width: 520px) {
       .signup-block { max-width: 100%; padding: 1rem; }
+      .signup-block .formkit-fields { flex-direction: column !important; }
     }
   </style>
 </head>

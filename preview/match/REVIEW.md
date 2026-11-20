@@ -15,3 +15,5 @@ Production promotion: confirm initial checkout URL, review copy/screens, finish 
 Owner review: remove price from the opening and mobile sticky bar. Price is first disclosed in the offer section after the benefit/resource sections, then repeated near the closing CTA.
 
 Owner copy revision: removed the explanatory paragraph under the resource cards and replaced em dashes with ordinary punctuation or bullets throughout the page.
+
+Owner copy revision: the audience section welcomes first-job seekers, career changers, returners and people seeking better opportunities. It does not promise suitable vacancies for every profile or claim to provide skills training.

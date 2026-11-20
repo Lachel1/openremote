@@ -13,3 +13,5 @@ Validation: browser checks at 320, 390, 768 and 1440 px show no horizontal overf
 Production promotion: confirm initial checkout URL, review copy/screens, finish advertised resource content and verify paid access rules, then remove preview notice/noindex and deploy the approved page at /match/ with owner-authorised launch navigation changes. Do not silently remove the existing Coming soon status from the public board.
 
 Owner review: remove price from the opening and mobile sticky bar. Price is first disclosed in the offer section after the benefit/resource sections, then repeated near the closing CTA.
+
+Owner copy revision: removed the explanatory paragraph under the resource cards and replaced em dashes with ordinary punctuation or bullets throughout the page.

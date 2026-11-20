@@ -11,3 +11,5 @@ Readiness: verify actual resource guides and copy buttons in-app before customer
 Validation: browser checks at 320, 390, 768 and 1440 px show no horizontal overflow or page errors, working anchors, images and FAQ, and blocked checkout. No payment, matching, CV optimisation, advertising trackers or subscriber collection ran. Standalone embedded images allow the page to be downloaded and reviewed without missing assets.
 
 Production promotion: confirm initial checkout URL, review copy/screens, finish advertised resource content and verify paid access rules, then remove preview notice/noindex and deploy the approved page at /match/ with owner-authorised launch navigation changes. Do not silently remove the existing Coming soon status from the public board.
+
+Owner review: remove price from the opening and mobile sticky bar. Price is first disclosed in the offer section after the benefit/resource sections, then repeated near the closing CTA.
